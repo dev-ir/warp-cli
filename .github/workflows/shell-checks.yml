@@ -1,0 +1,16 @@
+name: Shell checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bash syntax and mocked regression tests
+        run: |
+          bash -n main.sh
+          bash -n tests/test.sh
+          bash tests/test.sh
